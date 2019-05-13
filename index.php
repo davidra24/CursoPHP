@@ -72,17 +72,16 @@
               <?php                 
                 $totalMonths = 0;
                 for ($i = 0;$i < count($jobs);$i++) {
-                  $totalMonths += $jobs[$i]['months'];
+                  $totalMonths += $jobs[$i]->getMonths();
                   if($totalMonths > $limitMonths){
                     break;
                   }
-                  if(!$jobs[$i]['visible']){
+                  if(!$jobs[$i]->getVisible()){
                     continue;
                   }
-                  printJob($jobs[$i]);
+                  printElement($jobs[$i]);
                 }
               ?>
-              
             </ul>
           </div>
           <div>
@@ -90,49 +89,23 @@
             <div class="project">
               <h5>Project X</h5>
               <div class="row">
-                <div class="col-3">
-                  <img
-                    id="profile-picture"
-                    src=<?php echo $avatarURL ?>
-                    alt=""
-                  />
-                </div>
-                <div class="col">
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eius earum corporis at accusamus quisquam hic quos vel?
-                    Tenetur, ullam veniam consequatur esse quod cum, quam
-                    cupiditate assumenda natus maiores aperiam.
-                  </p>
-                  <strong>Technologies used:</strong>
-                  <span class="badge badge-secondary">PHP</span>
-                  <span class="badge badge-secondary">HTML</span>
-                  <span class="badge badge-secondary">CSS</span>
-                </div>
-              </div>
-            </div>
-            <div class="project">
-              <h5>Project X</h5>
-              <div class="row">
-                <div class="col-3">
-                  <img
-                    id="profile-picture"
-                    src=<?php echo $avatarURL ?>
-                    alt=""
-                  />
-                </div>
-                <div class="col">
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eius earum corporis at accusamus quisquam hic quos vel?
-                    Tenetur, ullam veniam consequatur esse quod cum, quam
-                    cupiditate assumenda natus maiores aperiam.
-                  </p>
-                  <strong>Technologies used:</strong>
-                  <span class="badge badge-secondary">PHP</span>
-                  <span class="badge badge-secondary">HTML</span>
-                  <span class="badge badge-secondary">CSS</span>
-                </div>
+                <?php                 
+                  $totalMonths = 0;
+                  for ($i = 0;$i < count($projects);$i++) {
+                    $totalMonths += $projects[$i]->getMonths();
+                    if($totalMonths > $limitMonths){
+                      break;
+                    }
+                    if(!$projects[$i]->getVisible()){
+                      continue;
+                    }
+                    printImage();
+                    echo'<div class="col-6">';
+                    printElement($projects[$i]);
+                    echo '</div>';
+                    printTechnologies();
+                  }
+                ?>
               </div>
             </div>
           </div>
