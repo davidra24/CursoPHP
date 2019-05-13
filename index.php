@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-    <?php include('php/hello.php') ?>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+      <?php include('php/hello.php') ?>
     <title>Curso de PHP</title>
   </head>
   <body>
@@ -20,13 +20,13 @@
         <div class="col-3">
           <img
             id="profile-picture"
-            src="https://ui-avatars.com/api/?name=David+Ramírez&size=255"
+            src=<?php echo $avatarURL ?>
             alt=""
           />
         </div>
         <div class="col">
           <h1><?php echo $name ?></h1>
-          <h2>Fullstack Developer</h2>
+          <h2><?php echo $jobTitle ?></h2>
           <ul>
             <li>
               Mail:
@@ -69,78 +69,20 @@
           <div>
             <h3 class="border-bottom-gray">Work Experience</h3>
             <ul>
-              <li class="work-position">
-                <h5>PHP Developer</h5>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-                  sapiente sed pariatur sint exercitationem eos expedita eveniet
-                  veniam ullam, quia neque facilis dicta voluptatibus. Eveniet
-                  doloremque ipsum itaque obcaecati nihil.
-                </p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                </ul>
-              </li>
-              <li class="work-position">
-                <h5>PHP Developer</h5>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-                  sapiente sed pariatur sint exercitationem eos expedita eveniet
-                  veniam ullam, quia neque facilis dicta voluptatibus. Eveniet
-                  doloremque ipsum itaque obcaecati nihil.
-                </p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                </ul>
-              </li>
-              <li class="work-position">
-                <h5>PHP Developer</h5>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-                  sapiente sed pariatur sint exercitationem eos expedita eveniet
-                  veniam ullam, quia neque facilis dicta voluptatibus. Eveniet
-                  doloremque ipsum itaque obcaecati nihil.
-                </p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, 80% consectetuer adipiscing
-                    elit.
-                  </li>
-                </ul>
-              </li>
+              <?php                 
+                $totalMonths = 0;
+                for ($i = 0;$i < count($jobs);$i++) {
+                  $totalMonths += $jobs[$i]['months'];
+                  if($totalMonths > $limitMonths){
+                    break;
+                  }
+                  if(!$jobs[$i]['visible']){
+                    continue;
+                  }
+                  printJob($jobs[$i]);
+                }
+              ?>
+              
             </ul>
           </div>
           <div>
@@ -151,7 +93,7 @@
                 <div class="col-3">
                   <img
                     id="profile-picture"
-                    src="https://ui-avatars.com/api/?name=John+Doe&size=255"
+                    src=<?php echo $avatarURL ?>
                     alt=""
                   />
                 </div>
@@ -175,7 +117,7 @@
                 <div class="col-3">
                   <img
                     id="profile-picture"
-                    src="https://ui-avatars.com/api/?name=John+Doe&size=255"
+                    src=<?php echo $avatarURL ?>
                     alt=""
                   />
                 </div>
